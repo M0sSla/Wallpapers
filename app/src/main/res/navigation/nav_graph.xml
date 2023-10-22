@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.myapplication.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_photoListFragment"
+            app:destination="@id/photoListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.example.myapplication.PhotoFragment"
+        android:label="PhotoFragment" />
+    <fragment
+        android:id="@+id/photoListFragment"
+        android:name="com.example.myapplication.PhotoListFragment"
+        android:label="PhotoListFragment" >
+        <action
+            android:id="@+id/action_photoListFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+</navigation>
