@@ -2,6 +2,7 @@ package com.example.myapplication.API;
 
 import androidx.annotation.NonNull;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -30,17 +31,18 @@ public class NasaService {
         return api;
     }
 
+
     private OkHttpClient createOkHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request originalRequest = chain.request();
-                HttpUrl url = originalRequest.url()
+            @NonNull
+            public Response intercept(@NonNull Chain chain) throws IOException {
+                final Request originalRequest = chain.request();
+                final HttpUrl url = originalRequest.url()
                         .newBuilder()
                         .addQueryParameter("api_key", KEY)
                         .build();
-                Request newRequest = originalRequest.newBuilder().url(url).build();
+                final Request newRequest = originalRequest.newBuilder().url(url).build();
                 return chain.proceed(newRequest);
             }
         });

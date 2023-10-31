@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.myapplication.API.Model.DateDTO;
@@ -33,7 +34,13 @@ public class MainFragment extends Fragment {
         binding = FragmentMainBinding.inflate(inflater, container, false);
 
         AdapterMain adapter = new AdapterMain();
-        binding.list.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.list
+                .setLayoutManager(
+                        new LinearLayoutManager(getContext(),
+                                LinearLayoutManager.VERTICAL,
+                                false)
+                );
+        //binding.list.setLayoutManager(new GridLayoutManager(getContext(), 3));
         binding.list.setAdapter(adapter);
 
         App app = (App) requireActivity().getApplication();
@@ -50,7 +57,8 @@ public class MainFragment extends Fragment {
                             adapter.setData(dateDTOS);
                         }
                     }
-                }));
+                })
+        );
 
         return binding.getRoot();
     }

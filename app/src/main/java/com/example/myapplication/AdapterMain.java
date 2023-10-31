@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.API.Model.DateDTO;
@@ -34,11 +37,12 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.DateViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull DateViewHolder holder, int position) {
-        DateDTO dateDTO = data.get(position);
         DateDTO date = data.get(position);
         holder.binding.text.setText(date.getDate());
         holder.binding.item.setOnClickListener(v -> {
-            // переход на фото лист фрагмент
+            Bundle bundle = new Bundle();
+            bundle.putString("date", date.getDate());
+            Navigation.findNavController(v).navigate(R.id.action_mainFragment_to_photoListFragment, bundle);
         });
     }
 
